@@ -1,0 +1,67 @@
+# Node modules
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment variables
+*.env
+config.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build directories
+frontend/dist/
+frontend/build/
+backend/dist/
+backend/build/
+
+# Cache
+.cache/
+frontend/.cache/
+backend/.cache/
+
+# Coverage reports
+coverage/
+frontend/coverage/
+backend/coverage/
+
+# Vite and Next.js specific
+frontend/.vite/
+frontend/.next/
+out/
+
+# Production bundles
+frontend/public/static/
+frontend/public/build/
+
+# IDE/Editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+*.backup
+
+# Ignore test output
+frontend/test-output/
+backend/test-output/
+
+# Ignore parcel cache (if used)
+.parcel-cache/
+
+# Ignore dotenv files with custom names
+*.local.env
