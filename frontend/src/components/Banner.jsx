@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
-const BannerCarousel = () => {
+const Banner= () => {
   const images = [
     '/images/banner1.jpg',
     '/images/banner2.jpg',
@@ -14,12 +14,13 @@ const BannerCarousel = () => {
   ];
 
   return (
-    <div className="w-full h-[500px] bg-gray-100">
+    <div className="w-full h-[500px] bg-gray-100 over overflow-hidden">
       <Swiper
         pagination={{ clickable: true }}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Autoplay]}
         loop={true}
+        autoplay={{delay:3000, disableOnInteraction:false}}
         className="w-full h-full"
       >
         {images.map((src, index) => (
@@ -36,4 +37,4 @@ const BannerCarousel = () => {
   );
 };
 
-export default BannerCarousel;
+export default Banner;
