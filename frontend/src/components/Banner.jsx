@@ -1,39 +1,24 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import React from "react";
 
-const Banner= () => {
-  const images = [
-    '/images/banner1.jpg',
-    '/images/banner2.jpg',
-    '/images/banner3.jpg',
-    // Add more images as needed
-  ];
-
+const Banner = () => {
   return (
-    <div className="w-full h-[500px] bg-gray-100 over overflow-hidden">
-      <Swiper
-        pagination={{ clickable: true }}
-        navigation={true}
-        modules={[Pagination, Navigation, Autoplay]}
-        loop={true}
-        autoplay={{delay:3000, disableOnInteraction:false}}
-        className="w-full h-full"
-      >
-        {images.map((src, index) => (
-          <SwiperSlide key={index} className="flex items-center justify-center">
-            <img
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <>
+      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row">
+        <div className="w-full order-2 md:order-1 md:w-1/2 mt-12 md:mt-32">
+          <div className="space-y-12">
+            <h1 className="text-4xl font-bold">Welcome to the Pistis Group.</h1>
+            <p className="text-xl">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+              blanditiis velit harum? Odio quidem sunt impedit repudiandae
+              consequuntur eius pariatur.
+            </p>
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 order-1">
+        <img src="/images/banner1.jpg"/>
+        </div>
+      </div>
+    </>
   );
 };
 
