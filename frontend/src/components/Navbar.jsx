@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [sticky, setSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const navItems = (
     <>
       <li>
@@ -19,7 +34,13 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 dark:bg-slate-800 dark:text-white fixed top-0 left-0 right-0 z-50">
+      <div
+        className={`text-black max-w-screen-2xl container mx-auto px-4 fixed top-0 left-0 right-0 ${
+          sticky
+            ? "sticky-navbar shadow-md duration-300 transition-all ease-in-out bg-slate-100"
+            : ""
+        }`}
+      >
         <div className="navbar">
           <div className="navbar-start">
             <div className="dropdown">
@@ -65,7 +86,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-2xl">{navItems}</ul>
+            <ul className="menu menu-horizontal px-1 text-xl">{navItems}</ul>
           </div>
           <div className="navbar-end">
             <label className="swap swap-rotate">
@@ -90,7 +111,7 @@ const Navbar = () => {
               </svg>
             </label>
             <div className="">
-              <a className="bg-black text-white p-2 rounded-md hover:bg-slate-700 duration-300 cursor-pointer">
+              <a className="px-2 py-2 text-white font-bold rounded-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/50 duration-300 cursor-pointer">
                 Office Login
               </a>
             </div>
