@@ -19,10 +19,10 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <a>Home</a>
+        <a href="/">Home</a>
       </li>
       <li>
-        <a>Products</a>
+        <a href="/products">Products</a>
       </li>
       <li>
         <a>Contact Us</a>
