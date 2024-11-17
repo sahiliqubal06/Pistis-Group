@@ -16,7 +16,7 @@ const Productlist = () => {
             deleniti molestiae numquam? Voluptas, dolore nobis.
           </p>
         </div>
-        <div>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
           {list.map((item) => (
             <Cards key={item.id} item={item} />
           ))}
