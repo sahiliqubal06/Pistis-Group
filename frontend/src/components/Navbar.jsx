@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Login from "./Login";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
@@ -129,9 +130,15 @@ const Navbar = () => {
               </svg>
             </label>
             <div className="">
-              <a className="px-2 py-2 text-white font-bold rounded-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/50 duration-300 cursor-pointer">
+              <a
+                className="px-2 py-2 text-white font-bold rounded-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/50 duration-300 cursor-pointer"
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
                 Office Login
               </a>
+              <Login />
             </div>
           </div>
         </div>
