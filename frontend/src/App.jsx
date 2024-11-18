@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products";
 import ContactUs from "./pages/ContactUs";
+import WhatsappChat from "./components/WhatsappChat";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contactus" element={<ContactUs />} />
         </Routes>
+        <WhatsappChat />
       </div>
     </>
   );

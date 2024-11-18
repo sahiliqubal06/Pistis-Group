@@ -10,10 +10,19 @@ const MessageForm = () => {
   const contactDetails = [
     {
       icon: <FaMapMarkerAlt className="text-blue-500" />,
-      label: "Address",
-      value: "123, Main Street, YourCity",
-      link: "https://www.google.com/maps?q=123+Main+Street+YourCity",
+      label: "Addresses",
+      value: [
+        {
+          value: "123, Main Street, YourCity",
+          link: "https://www.google.com/maps?q=123+Main+Street+YourCity",
+        },
+        {
+          value: "456, Another Street, YourCity",
+          link: "https://www.google.com/maps?q=456+Another+Street+YourCity",
+        },
+      ],
     },
+
     {
       icon: <FaPhoneAlt className="text-green-500" />,
       label: "Phone",
@@ -37,10 +46,8 @@ const MessageForm = () => {
   return (
     <>
       <div className=" mt-20 ">
-        <h1 className="text-3xl font-bold text-center">
-          Reach Out to Us
-        </h1>
-        <p className="text-xl text-center mx-auto max-w-2xl leading-relaxed mt-3">
+        <h1 className="text-3xl font-bold text-center">Reach Out to Us</h1>
+        <p className=" text-center mx-auto max-w-2xl leading-relaxed mt-3">
           Have any questions or need assistance? Feel free to send us a message!
           and we’ll get back to you promptly.
         </p>
@@ -54,14 +61,34 @@ const MessageForm = () => {
                   <div className="text-2xl">{item.icon}</div>
                   <div>
                     <p className="font-semibold">{item.label}</p>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      {item.value}
-                    </a>
+                    {Array.isArray(item.value) ? (
+                      // If value is an array (for Addresses), render each item
+                      <div className="space-y-2 ml-6">
+                        {item.value.map((address, addressIndex) => (
+                          <div key={addressIndex}>
+                            <p className="font-semibold">{address.label}</p>
+                            <a
+                              href={address.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline"
+                            >
+                              {address.value}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      // If value is not an array (for Phone, Email, WhatsApp), render it directly
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {item.value}
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
