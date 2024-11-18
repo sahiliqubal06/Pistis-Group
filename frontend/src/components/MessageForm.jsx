@@ -1,100 +1,166 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Login from './Login'
+import React from "react";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const MessageForm = () => {
+  const contactDetails = [
+    {
+      icon: <FaMapMarkerAlt className="text-blue-500" />,
+      label: "Address",
+      value: "123, Main Street, YourCity",
+      link: "https://www.google.com/maps?q=123+Main+Street+YourCity",
+    },
+    {
+      icon: <FaPhoneAlt className="text-green-500" />,
+      label: "Phone",
+      value: "+1234567890",
+      link: "tel:+1234567890",
+    },
+    {
+      icon: <FaEnvelope className="text-red-500" />,
+      label: "Email",
+      value: "contact@example.com",
+      link: "mailto:contact@example.com",
+    },
+    {
+      icon: <FaWhatsapp className="text-green-600" />,
+      label: "WhatsApp",
+      value: "+1234567890",
+      link: "https://wa.me/1234567890",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-    <div className="w-full max-w-lg bg-white p-8 rounded-md shadow-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Contact Us</h2>
-      <form  className="space-y-4">
-        {/* Name Field */}
-        <div>
-          <label className="block font-medium mb-1" htmlFor="name">
-            Name
-          </label>
-          <input
-            id="name"
-            type="text"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            // {...register("name", { required: "Name is required" })}
-          />
-          {/* {errors.name && (
+    <>
+      <div className=" mt-20 ">
+        <h1 className="text-3xl font-bold text-center">
+          Reach Out to Us
+        </h1>
+        <p className="text-xl text-center mx-auto max-w-2xl leading-relaxed mt-3">
+          Have any questions or need assistance? Feel free to send us a message!
+          and we’ll get back to you promptly.
+        </p>
+      </div>
+      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row mb-10">
+        <div className="w-full order-1 md:order-1 md:w-1/2 mt-12 md:mt-36">
+          <div className="max-w-md mx-auto p-6 bg-white rounded-lg ">
+            <div className="space-y-6">
+              {contactDetails.map((item, index) => (
+                <div key={index} className="flex items-center space-x-4">
+                  <div className="text-2xl">{item.icon}</div>
+                  <div>
+                    <p className="font-semibold">{item.label}</p>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      {item.value}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="w-full md:w-1/2 order-1 mt-20 bg-white">
+          <div className="w-full max-w-lg bg-white p-8 rounded-md ">
+            {/* <h2 className="text-2xl font-bold text-center mb-6">Contact Us</h2> */}
+            <form className="space-y-4">
+              {/* Name Field */}
+              <div>
+                <label className="block font-medium mb-1" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // {...register("name", { required: "Name is required" })}
+                />
+                {/* {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
           )} */}
-        </div>
+              </div>
 
-        {/* Email Field */}
-        <div>
-          <label className="block font-medium mb-1" htmlFor="email">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            // {...register("email", {
-            //   required: "Email is required",
-            //   pattern: {
-            //     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            //     message: "Please provide a valid Email!",
-            //   },
-            // })}
-          />
-          {/* {errors.email && (
+              {/* Email Field */}
+              <div>
+                <label className="block font-medium mb-1" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // {...register("email", {
+                  //   required: "Email is required",
+                  //   pattern: {
+                  //     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  //     message: "Please provide a valid Email!",
+                  //   },
+                  // })}
+                />
+                {/* {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
           )} */}
-        </div>
+              </div>
 
-        {/* Phone Field */}
-        <div>
-          <label className="block font-medium mb-1" htmlFor="phone">
-            Phone
-          </label>
-          <input
-            id="phone"
-            type="text"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            // {...register("phone", { required: "Phone number is required" })}
-          />
-          {/* {errors.phone && (
+              {/* Phone Field */}
+              <div>
+                <label className="block font-medium mb-1" htmlFor="phone">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  type="text"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // {...register("phone", { required: "Phone number is required" })}
+                />
+                {/* {errors.phone && (
             <p className="text-red-500 text-sm mt-1">
               {errors.phone.message}
             </p>
           )} */}
-        </div>
+              </div>
 
-        {/* Message Field */}
-        <div>
-          <label className="block font-medium mb-1" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            rows="4"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            // {...register("message", { required: "Message is required" })}
-          ></textarea>
-          {/* {errors.message && (
+              {/* Message Field */}
+              <div>
+                <label className="block font-medium mb-1" htmlFor="message">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // {...register("message", { required: "Message is required" })}
+                ></textarea>
+                {/* {errors.message && (
             <p className="text-red-500 text-sm mt-1">
               {errors.message.message}
             </p>
           )} */}
-        </div>
+              </div>
 
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
-          >
-            Send Message
-          </button>
+              {/* Submit Button */}
+              <div>
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-  )
-}
+      </div>
+    </>
+  );
+};
 
-export default MessageForm
+export default MessageForm;
