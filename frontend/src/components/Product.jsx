@@ -46,13 +46,21 @@ const Product = () => {
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
         <div>
-          <h1 className="font-bold text-xl pb-2">Our Products</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-            hic distinctio quas tempore iure. Repudiandae.
+          <h1 className="font-bold text-4xl pb-2 justify-center text-center">Our Products</h1>
+          <p className="text-xl text-justify">
+            At Pistis Group, we take pride in offering a comprehensive range of
+            surgical products tailored to meet the diverse needs of healthcare
+            professionals. Our catalog includes precision-engineered surgical
+            instruments, diagnostic devices, and medical supplies designed to
+            enhance efficiency and ensure optimal patient outcomes. Each product
+            in our inventory is sourced from trusted manufacturers and undergoes
+            rigorous quality checks to guarantee reliability and safety. Whether
+            you require tools for routine procedures or advanced surgical
+            interventions, our solutions are crafted to support excellence in
+            every aspect of patient care.
           </p>
         </div>
-        <div>
+        <div className="mt-2">
           <Slider {...settings}>
             {filterData.map((item) => (
               <Cards item={item} key={item.id} />
