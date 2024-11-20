@@ -74,13 +74,18 @@ const Navbar = () => {
             </div>
             <div className="flex items-center space-x-2">
               <div className="flex items-center">
-                <img
-                  src="/logo1.png"
-                  alt="Pistis Group Logo"
-                  className="h-10 w-auto cursor-pointer"
-                />
+                <a href="/">
+                  <img
+                    src="/logo1.png"
+                    alt="Pistis Group Logo"
+                    className="h-10 w-auto cursor-pointer"
+                  />
+                </a>
               </div>
-              <a className="text-2xl font-bold cursor-pointer hidden sm:block">
+              <a
+                href="/"
+                className="text-2xl font-bold cursor-pointer hidden sm:block"
+              >
                 PistisGroup
               </a>
             </div>
