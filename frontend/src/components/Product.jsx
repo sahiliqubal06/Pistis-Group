@@ -44,7 +44,7 @@ const Product = () => {
 
   return (
     <>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
+      <div className="max-w-screen-2xl container mx-auto md:px-10 px-4">
         <div>
           <h1 className="font-bold text-4xl pb-2 justify-center text-center">Our Products</h1>
           <p className="text-xl text-justify">

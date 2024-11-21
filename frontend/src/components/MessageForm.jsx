@@ -45,15 +45,17 @@ const MessageForm = () => {
 
   return (
     <>
-      <div className=" mt-20 ">
-        <h1 className="text-3xl font-bold text-center">Reach Out to Us</h1>
-        <p className=" text-center mx-auto max-w-2xl leading-relaxed mt-3">
+      <div className=" mt-28 ">
+        <h1 className="text-2xl md:text-4xl font-bold justify-center text-center">
+          Reach Out to Us
+        </h1>
+        <p className=" text-center mx-auto max-w-2xl leading-relaxed mt-3 text-xl">
           Have any questions or need assistance? Feel free to send us a message!
           and we’ll get back to you promptly.
         </p>
       </div>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row mb-10">
-        <div className="w-full order-1 md:order-1 md:w-1/2 mt-12 md:mt-36">
+      <div className="max-w-screen-2xl container mx-auto md:px-10 px-4 flex flex-col md:flex-row mb-10">
+        <div className="w-full order-1 md:order-1 md:w-1/2 mt-12">
           <div className="max-w-md mx-auto p-6 bg-white rounded-lg ">
             <div className="space-y-6">
               {contactDetails.map((item, index) => (
@@ -79,7 +81,6 @@ const MessageForm = () => {
                         ))}
                       </div>
                     ) : (
-                      // If value is not an array (for Phone, Email, WhatsApp), render it directly
                       <a
                         href={item.link}
                         target="_blank"
@@ -95,7 +96,7 @@ const MessageForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 order-1 mt-20 bg-white">
+        <div className="w-full md:w-1/2 order-1 mt-8 bg-white">
           <div className="w-full max-w-lg bg-white p-8 rounded-md ">
             {/* <h2 className="text-2xl font-bold text-center mb-6">Contact Us</h2> */}
             <form className="space-y-4">

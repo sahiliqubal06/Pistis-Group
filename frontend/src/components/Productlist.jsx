@@ -5,9 +5,8 @@ import Cards from "./Cards";
 const Productlist = () => {
   return (
     <>
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
-        <div className="mt-28 items-center justify-center text-center">
-          <h1 className="text-4xl md:text-4xl font-bold">Product List</h1>
+      <div className="max-w-screen-2xl container mx-auto md:px-10 px-4 mt-28">
+        <div className="items-center justify-center text-center">
           <p className="mt-12 text-xl text-justify">
             We specialize in providing a wide range of high-quality medical and
             surgical disposable products designed to meet the diverse needs of
@@ -21,6 +20,12 @@ const Productlist = () => {
             disposable products are tailored to support efficiency, cleanliness,
             and patient care.
           </p>
+        </div>
+        <div className="mt-5">
+          {" "}
+          <h1 className="text-4xl md:text-4xl font-bold text-center">
+            Product List
+          </h1>
         </div>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
           {list.map((item) => (
