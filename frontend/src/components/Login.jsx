@@ -13,6 +13,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     if (data.email === "admin@pistis.com" && data.password === "pistis123") {
+      localStorage.setItem("isAuthenticated", "true");
       navigate("/dashboard");
     } else {
       alert("Invalid login Credentials");

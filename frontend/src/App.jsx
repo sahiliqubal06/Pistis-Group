@@ -6,6 +6,7 @@ import ContactUs from "./pages/ContactUs";
 import WhatsappChat from "./components/WhatsappChat";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -16,7 +17,14 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <WhatsappChat />
       </div>

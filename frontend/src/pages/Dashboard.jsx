@@ -21,15 +21,20 @@ const Dashboard = () => {
     fetchMessages();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-blue-500 text-white py-4 px-6 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Admin Dashboard</h1>
         <button
           className="bg-white text-blue-500 px-4 py-2 rounded hover:bg-gray-200"
-          onClick={() => navigate("/")}
+          onClick={handleLogout}
         >
-          Go to Home
+          Logout
         </button>
       </header>
       <div className="p-6">
