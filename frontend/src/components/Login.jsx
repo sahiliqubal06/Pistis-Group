@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -8,29 +9,36 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    if (data.email === "admin@pistis.com" && data.password === "pistis123") {
+      navigate("/dashboard");
+    } else {
+      alert("Invalid login Credentials");
+    }
+  };
 
   return (
-    <div>
+    <div className="text-center justify-center">
       <dialog id="my_modal_3" className="modal ">
-        <div className="modal-box bg-slate-100 dark:bg-slate-900 dark:text-white">
+        <div className="modal-box bg-slate-900">
           <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               onClick={() => document.getElementById("my_modal_3").close()}
             >
               ✕
             </button>
-            <h3 className="font-bold text-lg">Login</h3>
-            <h1>Only Admins Are Allowed To Access.</h1>
+            <h3 className="font-bold text-lg ">Login</h3>
+            <h1 className="">Only Admins Are Allowed To Access.</h1>
             <div className="mt-4 space-y-2">
               <span>Email</span>
               <br />
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
+                className="w-80 px-3 py-1 border rounded-md outline-none text-black"
                 {...register("email", { required: true })}
               />
               <br />
@@ -46,7 +54,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
+                className="w-80 px-3 py-1 border rounded-md outline-none text-black"
                 {...register("password", { required: true })}
               />
               <br />

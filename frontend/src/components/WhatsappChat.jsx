@@ -1,7 +1,14 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const WhatsAppChat = () => {
+  const location = useLocation();
+
+  if (location.pathname === "/dashboard") {
+    return null;
+  }
+
   const phoneNumber = "+916287365656"; // Replace with your WhatsApp number
   const message = "Hello! I need assistance."; // Default message
 

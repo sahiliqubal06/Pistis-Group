@@ -64,7 +64,6 @@ const MessageForm = () => {
                   <div>
                     <p className="font-semibold">{item.label}</p>
                     {Array.isArray(item.value) ? (
-                      // If value is an array (for Addresses), render each item
                       <div className="space-y-2 ml-6">
                         {item.value.map((address, addressIndex) => (
                           <div key={addressIndex}>
@@ -98,9 +97,7 @@ const MessageForm = () => {
         </div>
         <div className="w-full md:w-1/2 order-1 mt-8 bg-white">
           <div className="w-full max-w-lg bg-white p-8 rounded-md ">
-            {/* <h2 className="text-2xl font-bold text-center mb-6">Contact Us</h2> */}
             <form className="space-y-4">
-              {/* Name Field */}
               <div>
                 <label className="block font-medium mb-1" htmlFor="name">
                   Name
@@ -109,14 +106,8 @@ const MessageForm = () => {
                   id="name"
                   type="text"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // {...register("name", { required: "Name is required" })}
                 />
-                {/* {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-          )} */}
               </div>
-
-              {/* Email Field */}
               <div>
                 <label className="block font-medium mb-1" htmlFor="email">
                   Email
@@ -125,20 +116,8 @@ const MessageForm = () => {
                   id="email"
                   type="email"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // {...register("email", {
-                  //   required: "Email is required",
-                  //   pattern: {
-                  //     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  //     message: "Please provide a valid Email!",
-                  //   },
-                  // })}
                 />
-                {/* {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-          )} */}
               </div>
-
-              {/* Phone Field */}
               <div>
                 <label className="block font-medium mb-1" htmlFor="phone">
                   Phone
@@ -147,16 +126,8 @@ const MessageForm = () => {
                   id="phone"
                   type="text"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // {...register("phone", { required: "Phone number is required" })}
                 />
-                {/* {errors.phone && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.phone.message}
-            </p>
-          )} */}
               </div>
-
-              {/* Message Field */}
               <div>
                 <label className="block font-medium mb-1" htmlFor="message">
                   Message
@@ -165,16 +136,8 @@ const MessageForm = () => {
                   id="message"
                   rows="4"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // {...register("message", { required: "Message is required" })}
                 ></textarea>
-                {/* {errors.message && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.message.message}
-            </p>
-          )} */}
               </div>
-
-              {/* Submit Button */}
               <div>
                 <button
                   type="submit"

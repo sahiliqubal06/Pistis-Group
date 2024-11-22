@@ -5,6 +5,7 @@ import Products from "./pages/Products";
 import ContactUs from "./pages/ContactUs";
 import WhatsappChat from "./components/WhatsappChat";
 import AboutUs from "./pages/AboutUs";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <WhatsappChat />
       </div>
