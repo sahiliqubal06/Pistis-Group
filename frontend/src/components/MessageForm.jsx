@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -7,6 +7,28 @@ import {
 } from "react-icons/fa";
 
 const MessageForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("", formData);
+      alert(data.message);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      alert(error.response?.data?.message || "Error sending message");
+    }
+  };
   const contactDetails = [
     {
       icon: <FaMapMarkerAlt className="text-blue-500" />,
@@ -97,7 +119,7 @@ const MessageForm = () => {
         </div>
         <div className="w-full md:w-1/2 order-1 mt-8 bg-white">
           <div className="w-full max-w-lg bg-white p-8 rounded-md ">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block font-medium mb-1" htmlFor="name">
                   Name
@@ -105,6 +127,8 @@ const MessageForm = () => {
                 <input
                   id="name"
                   type="text"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -115,6 +139,8 @@ const MessageForm = () => {
                 <input
                   id="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -125,6 +151,8 @@ const MessageForm = () => {
                 <input
                   id="phone"
                   type="text"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -135,6 +163,8 @@ const MessageForm = () => {
                 <textarea
                   id="message"
                   rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 ></textarea>
               </div>
