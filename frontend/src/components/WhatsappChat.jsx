@@ -9,8 +9,8 @@ const WhatsAppChat = () => {
     return null;
   }
 
-  const phoneNumber = "+916287365656"; // Replace with your WhatsApp number
-  const message = "Hello! I need assistance."; // Default message
+  const phoneNumber = "+9779840108594"; 
+  const message = "Hello! I need assistance."; 
 
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message

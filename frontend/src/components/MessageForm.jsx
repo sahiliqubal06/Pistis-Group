@@ -26,7 +26,11 @@ const MessageForm = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid email address!";
     }
-    if (!formData.phone) newErrors.phone = "Phone number is required!";
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required!";
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Phone number must be exactly 10 digits!";
+    }
     if (!formData.message) newErrors.message = "Message is required!";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -64,11 +68,11 @@ const MessageForm = () => {
       label: "Addresses",
       value: [
         {
-          value: "123, Main Street, YourCity",
+          value: "Birgunj",
           link: "https://www.google.com/maps?q=123+Main+Street+YourCity",
         },
         {
-          value: "456, Another Street, YourCity",
+          value: "Kathmandu",
           link: "https://www.google.com/maps?q=456+Another+Street+YourCity",
         },
       ],
@@ -77,20 +81,20 @@ const MessageForm = () => {
     {
       icon: <FaPhoneAlt className="text-green-500" />,
       label: "Phone",
-      value: "+1234567890",
-      link: "tel:+1234567890",
+      value: "+9779840108594",
+      link: "tel:+9779840108594",
     },
     {
       icon: <FaEnvelope className="text-red-500" />,
       label: "Email",
-      value: "contact@example.com",
-      link: "mailto:contact@example.com",
+      value: "pistisgroups@gmail.com",
+      link: "mailto:pistisgroups@gmail.com",
     },
     {
       icon: <FaWhatsapp className="text-green-600" />,
       label: "WhatsApp",
-      value: "+1234567890",
-      link: "https://wa.me/1234567890",
+      value: "+9779840108594",
+      link: "https://wa.me/+9779840108594",
     },
   ];
 

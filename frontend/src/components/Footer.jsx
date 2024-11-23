@@ -44,27 +44,27 @@ const Footer = () => {
               <li className="flex items-center space-x-2">
                 <FaEnvelope className="text-2xl" />
                 <a
-                  href="mailto:info@pistisgroup.com"
+                  href="mailto:pistisgroups@gmail.com"
                   className="hover:text-green-500"
                 >
-                  info@pistisgroup.com
+                  pistisgroups@gmail.com
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <FaPhoneAlt className="text-2xl" />
-                <span>+1 (123) 456-7890</span>
+                <span>+977 9840108594</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaPhoneAlt className="text-2xl" />
-                <span>+1 (123) 456-7890</span>
+                <span>+977 9840108594</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaMapMarkerAlt className="text-2xl" />
-                <span>123 Healthcare St, City, Country</span>
+                <span>Birgunj,Nepal</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaMapMarkerAlt className="text-2xl" />
-                <span>123 Healthcare St, City, Country</span>
+                <span>Kathmandu,Nepal</span>
               </li>
             </ul>
           </div>
@@ -109,10 +109,22 @@ const Footer = () => {
           </div>
 
           {/* Copyright Information */}
-          <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex justify-center items-center mt-8 mb-0 sm:mt-0">
-            <p>
+          <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-0 space-y-2 sm:space-y-0 sm:space-x-4">
+            <p className="text-center">
               &copy; {new Date().getFullYear()} Pistis Group. All Rights
               Reserved.
+            </p>
+            <span className="hidden sm:inline-block">|</span>
+            <p className="text-center">
+              Designed and developed by{" "}
+              <a
+                href="https://github.com/sahiliqubal06"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Sahil Iqubal
+              </a>
             </p>
           </div>
         </div>

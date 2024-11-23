@@ -16,7 +16,7 @@ const AboutUs = () => {
           standard of healthcare in Nepal.
         </p>
       </div>
-      <div className="max-w-screen-2xl container mx-auto md:px-10 px-4 flex flex-col md:flex-row mb-10 gap-10">
+      <div className="max-w-screen-2xl container mx-auto md:px-10 px-4 flex flex-col md:flex-row mb-10 gap-16">
         <div className="w-full md:w-1/2 mt-20">
           <h3 className="text-2xl font-semibold mb-4">Who We Are</h3>
           <p className="text-xl leading-relaxed text-justify">
@@ -51,12 +51,21 @@ const AboutUs = () => {
         </div>
 
         {/* Right Column: Image */}
-        <div className="w-full md:w-1/2 mt-10 ">
-          <img
-            src="/images/banner5.jpg"
-            alt="Surgical Items"
-            className="rounded-lg"
-          />
+        <div className="w-full md:w-1/2 mt-20 flex flex-col gap-16">
+          <div>
+            <img
+              src="/images/banner5.jpg"
+              alt="Surgical Items"
+              className="rounded-lg"
+            />
+          </div>
+          <div>
+            <img
+              src="/images/banner5.jpg"
+              alt="Surgical Items"
+              className="rounded-lg"
+            />
+          </div>
         </div>
       </div>
       {/* Bottom Section */}

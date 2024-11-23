@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -8,6 +9,8 @@ const Dashboard = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [feedback, setFeedback] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedMessageId, SetSelectedMessageId] = useState(null);
 
   const fetchMessages = async () => {
     try {
@@ -35,13 +38,11 @@ const Dashboard = () => {
     };
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      const confirmDelete = window.confirm(
-        "Are you sure want to delete this message?"
+      await axios.delete(
+        `http://localhost:3000/api/message/delete/${selectedMessageId}`
       );
-      if (!confirmDelete) return;
-      await axios.delete(`http://localhost:3000/api/message/delete/${id}`);
       setFeedback({
         type: "success",
         message: "Message deleted successfully!",
@@ -56,6 +57,8 @@ const Dashboard = () => {
         type: "error",
         message: "Failed to delete message. Please try again!",
       });
+    } finally {
+      setDialogOpen(false);
     }
   };
 
@@ -69,7 +72,7 @@ const Dashboard = () => {
       <header className="bg-blue-500 text-white py-4 px-6 flex flex-wrap justify-between items-center">
         <h1 className="text-2xl font-bold">Admin Dashboard</h1>
         <button
-          className="bg-white text-blue-500 px-4 py-2 rounded hover:bg-gray-200"
+          className="bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-gray-200"
           onClick={handleLogout}
         >
           Logout
@@ -131,7 +134,10 @@ const Dashboard = () => {
                       <td className="border border-gray-300 px-4 py-2 text-center">
                         <button
                           className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                          onClick={() => handleDelete(msg._id)}
+                          onClick={() => {
+                            SetSelectedMessageId(msg._id);
+                            setDialogOpen(true);
+                          }}
                         >
                           Delete
                         </button>
@@ -145,6 +151,12 @@ const Dashboard = () => {
             )}
           </div>
         </section>
+        <ConfirmationDialog
+          isOpen={dialogOpen}
+          message="Are you sure want to delete this message? "
+          onConfirm={handleDelete}
+          onCancel={() => setDialogOpen(false)}
+        />
       </div>
     </div>
   );
