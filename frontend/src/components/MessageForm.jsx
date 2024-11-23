@@ -5,6 +5,7 @@ import {
   FaEnvelope,
   FaWhatsapp,
 } from "react-icons/fa";
+import axios from "axios";
 
 const MessageForm = () => {
   const [formData, setFormData] = useState({
@@ -14,19 +15,46 @@ const MessageForm = () => {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Name is required!";
+    if (!formData.email) {
+      newErrors.email = "Email is required!";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email address!";
+    }
+    if (!formData.phone) newErrors.phone = "Phone number is required!";
+    if (!formData.message) newErrors.message = "Message is required!";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
+    setErrors((prev) => ({ ...prev, [id]: "" }));
+    setSuccessMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     try {
-      const { data } = await axios.post("", formData);
-      alert(data.message);
+      const { data } = await axios.post(
+        "http://localhost:3000/api/message/send",
+        formData
+      );
+      setSuccessMessage(data.message);
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
     } catch (error) {
-      alert(error.response?.data?.message || "Error sending message");
+      setSuccessMessage("");
+      setErrors({
+        form: error.response?.data?.message || "Error sending message",
+      });
     }
   };
   const contactDetails = [
@@ -120,42 +148,33 @@ const MessageForm = () => {
         <div className="w-full md:w-1/2 order-1 mt-8 bg-white">
           <div className="w-full max-w-lg bg-white p-8 rounded-md ">
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <label className="block font-medium mb-1" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block font-medium mb-1" htmlFor="phone">
-                  Phone
-                </label>
-                <input
-                  id="phone"
-                  type="text"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+              {successMessage && (
+                <p className="text-green-500 text-lg font-medium text-center">
+                  {successMessage}
+                </p>
+              )}
+              {[
+                { id: "name", label: "Name", type: "text" },
+                { id: "email", label: "Email", type: "email" },
+                { id: "phone", label: "Phone", type: "text" },
+              ].map(({ id, label, type }) => (
+                <div key={id}>
+                  <label className="block font-medium mb-1" htmlFor={id}>
+                    {label}
+                  </label>
+                  <input
+                    id={id}
+                    type={type}
+                    value={formData[id]}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 
+                      ${errors[id] ? "border-red-500" : "focus:ring-blue-500"}`}
+                  />
+                  {errors[id] && (
+                    <p className="text-red-500 text-sm mt-1">{errors[id]}</p>
+                  )}
+                </div>
+              ))}
               <div>
                 <label className="block font-medium mb-1" htmlFor="message">
                   Message
@@ -165,8 +184,14 @@ const MessageForm = () => {
                   rows="4"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2
+                    ${
+                      errors.message ? "border-red-500" : "focus:ring-blue-500"
+                    }`}
                 ></textarea>
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
               <div>
                 <button
