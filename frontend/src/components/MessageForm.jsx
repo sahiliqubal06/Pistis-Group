@@ -50,6 +50,7 @@ const MessageForm = () => {
       setSuccessMessage(data.message);
       setFormData({ name: "", email: "", phone: "", message: "" });
       setErrors({});
+      window.dispatchEvent(new Event("updateMessages"));
     } catch (error) {
       setSuccessMessage("");
       setErrors({
