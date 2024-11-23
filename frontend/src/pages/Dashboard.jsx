@@ -7,6 +7,7 @@ const Dashboard = () => {
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [feedback, setFeedback] = useState(null);
 
   const fetchMessages = async () => {
     try {
@@ -34,6 +35,30 @@ const Dashboard = () => {
     };
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const confirmDelete = window.confirm(
+        "Are you sure want to delete this message?"
+      );
+      if (!confirmDelete) return;
+      await axios.delete(`http://localhost:3000/api/message/delete/${id}`);
+      setFeedback({
+        type: "success",
+        message: "Message deleted successfully!",
+      });
+      fetchMessages();
+    } catch (error) {
+      console.error(
+        "Error deleting message:",
+        error.response?.data.message || error.message
+      );
+      setFeedback({
+        type: "error",
+        message: "Failed to delete message. Please try again!",
+      });
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
     navigate("/");
@@ -52,6 +77,15 @@ const Dashboard = () => {
       </header>
       <div className="p-6">
         <section className="mb-6">
+          {feedback && (
+            <div
+              className={`p-4 mb-4 text-white rounded ${
+                feedback.type === "success" ? "bg-green-500" : "bg-red-500"
+              }`}
+            >
+              {feedback.message}
+            </div>
+          )}
           <h2 className="text-xl font-semibold mb-4 text-center justify-center">
             Messages
           </h2>
@@ -95,7 +129,10 @@ const Dashboard = () => {
                         {msg.message}
                       </td>
                       <td className="border border-gray-300 px-4 py-2 text-center">
-                        <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                        <button
+                          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                          onClick={() => handleDelete(msg._id)}
+                        >
                           Delete
                         </button>
                       </td>
