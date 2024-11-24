@@ -72,21 +72,16 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center">
-                <a href="/">
-                  <img
-                    src="/logo1.png"
-                    alt="Pistis Group Logo"
-                    className="h-10 w-auto cursor-pointer"
-                  />
-                </a>
-              </div>
-              <a
-                href="/"
-                className="text-2xl font-bold cursor-pointer hidden sm:block"
-              >
-                PistisGroup
+            <div className="flex items-center space-x-2 ">
+              <a href="/" className="flex items-center space-x-2 ">
+                <img
+                  src="/logo1.png"
+                  alt="Pistis Group Logo"
+                  className="h-8 w-auto cursor-pointer rounded-box hover:scale-110 hover:shadow-lg transition-transform duration-300"
+                />
+                <span className="text-2xl font-bold text-white hidden sm:inline hover:text-green-600">
+                  Pistis Group
+                </span>
               </a>
             </div>
           </div>
