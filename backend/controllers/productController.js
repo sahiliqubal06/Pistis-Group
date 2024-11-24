@@ -2,6 +2,14 @@ import { Product } from "../models/productSchema.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 
+export const getAllProducts = catchAsyncErrors(async (req, res) => {
+  const products = await Product.find();
+  res.status(200).json({
+    success: true,
+    products,
+  });
+});
+
 export const addProduct = catchAsyncErrors(async (req, res) => {
   const { name, description, category, image } = req.body;
   if (!name || !description || !category || !image) {

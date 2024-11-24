@@ -12,12 +12,12 @@ const Cards = ({ item }) => {
             <h2 className="card-title justify-center text-center">
               {item.name}
             </h2>
-            {/* <p>{item.title}</p>
+            <p>{item.description}</p>
             <div className="card-actions justify-end">
-              <div className="cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-blue-500 hover:text-white">
+              {/* <div className="cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-blue-500 hover:text-white">
                 Learn More
-              </div>
-            </div> */}
+              </div> */}
+            </div>
           </div>
         </div>
       </div>

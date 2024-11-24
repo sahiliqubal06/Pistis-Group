@@ -1,12 +1,37 @@
-import React from "react";
-import list from "../../public/list.json";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Cards from "./Cards";
+import axios from "axios";
 
 const Product = () => {
-  const filterData = list.filter((data) => data.category === "surgical gloves");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:3000/api/product/products"
+      );
+      setProducts(data.products);
+      setLoading(false);
+    } catch (error) {
+      console.error(
+        "Error fetching products:",
+        error.response?.data.message || error.message
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const filterData = products.filter(
+    (product) => product.category === "Health"
+  );
+
   var settings = {
     dots: true,
     infinite: false,
@@ -46,7 +71,9 @@ const Product = () => {
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-10 px-4">
         <div>
-          <h1 className="font-bold text-4xl pb-2 justify-center text-center">Our Products</h1>
+          <h1 className="font-bold text-4xl pb-2 justify-center text-center">
+            Our Products
+          </h1>
           <p className="text-xl text-justify">
             At Pistis Group, we take pride in offering a comprehensive range of
             surgical products tailored to meet the diverse needs of healthcare
@@ -61,11 +88,17 @@ const Product = () => {
           </p>
         </div>
         <div className="mt-2">
-          <Slider {...settings}>
-            {filterData.map((item) => (
-              <Cards item={item} key={item.id} />
-            ))}
-          </Slider>
+          {loading ? (
+            <p>loading...</p>
+          ) : filterData.length > 0 ? (
+            <Slider {...settings}>
+              {filterData.map((item) => (
+                <Cards item={item} key={item._id} />
+              ))}
+            </Slider>
+          ) : (
+            <p>No products found in this category.</p>
+          )}
         </div>{" "}
       </div>
     </>

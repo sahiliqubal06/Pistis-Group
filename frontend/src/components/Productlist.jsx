@@ -1,8 +1,31 @@
-import React from "react";
-import list from "../../public/list.json";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Cards from "./Cards";
 
 const Productlist = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:3000/api/product/products"
+      );
+      setProducts(data.products);
+      setLoading(false);
+    } catch (error) {
+      console.error(
+        "Error fetching products:",
+        error.response?.data.message || error.message
+      );
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-10 px-4 mt-28">
@@ -22,15 +45,18 @@ const Productlist = () => {
           </p>
         </div>
         <div className="mt-5">
-          {" "}
           <h1 className="text-4xl md:text-4xl font-bold text-center">
             Product List
           </h1>
         </div>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
-          {list.map((item) => (
-            <Cards key={item.id} item={item} />
-          ))}
+          {loading ? (
+            <p>Loading products...</p>
+          ) : products.length > 0 ? (
+            products.map((item) => <Cards key={item._id} item={item} />)
+          ) : (
+            <p>No products found.</p>
+          )}
         </div>
       </div>
     </>
