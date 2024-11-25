@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MessageTable from "../components/MessageTable";
+import ProductManager from "../components/ProductManager";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-500 text-white py-4 px-6 flex items-center justify-between ">
+      <header className="bg-blue-950 text-white py-4 px-6 flex items-center justify-between ">
         <div className="flex items-center space-x-2 ">
           <a href="/" className="flex items-center space-x-2 ">
             <img
@@ -27,7 +28,9 @@ const Dashboard = () => {
             </span>
           </a>
         </div>
-        <h1 className="text-2xl font-bold flex-grow text-center">Admin Dashboard</h1>
+        <h1 className="text-2xl font-bold flex-grow text-center">
+          Admin Dashboard
+        </h1>
         <button
           className="bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-gray-200"
           onClick={handleLogout}
@@ -46,6 +49,7 @@ const Dashboard = () => {
           </div>
         )}
         <MessageTable setFeedback={setFeedback} />
+        <ProductManager setFeedback={setFeedback} />
       </div>
     </div>
   );

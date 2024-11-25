@@ -59,11 +59,11 @@ const MessageTable = ({ setFeedback }) => {
   };
 
   return (
-    <section className="mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-center justify-center">
-        Messages
-      </h2>
+    <div className="mb-6">
       <div className="bg-white p-4 rounded shadow overflow-auto">
+        <h2 className="text-3xl font-bold mb-4 text-center text-blue-600">
+          Messages
+        </h2>
         {loading ? (
           <p>Loading messages...</p>
         ) : messages.length > 0 ? (
@@ -127,7 +127,7 @@ const MessageTable = ({ setFeedback }) => {
         onConfirm={handleDelete}
         onCancel={() => setDialogOpen(false)}
       />
-    </section>
+    </div>
   );
 };
 
