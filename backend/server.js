@@ -5,6 +5,7 @@ import { connectDB } from "./database/db.js";
 import messageRouter from "./routes/messageRouter.js";
 import productRouter from "./routes/productRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import cloudinary from "cloudinary";
 
 const app = express();
 dotenv.config({ path: "./config.env" });
@@ -17,6 +18,12 @@ app.use("/api/product", productRouter);
 connectDB();
 
 app.use(errorMiddleware);
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const port = process.env.PORT || 3000;
 app.listen(process.env.PORT, () => {
