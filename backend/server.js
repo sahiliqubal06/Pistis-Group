@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(cors());
 app.use(
   fileUpload({
-    useTempFiles: true, // Enables temporary file usage
-    tempFileDir: "/tmp/", // Directory for temp files
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
   })
 );
 
@@ -27,7 +27,7 @@ connectDB();
 app.use(errorMiddleware);
 
 cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });

@@ -35,8 +35,7 @@ export const addProduct = catchAsyncErrors(async (req, res) => {
   let cloudinaryResponse;
   try {
     cloudinaryResponse = await cloudinary.v2.uploader.upload(
-      image.tempFilePath,
-      {}
+      image.tempFilePath
     );
   } catch (error) {
     console.error("Cloudinary Error:", error);
