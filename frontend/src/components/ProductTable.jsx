@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 const ProductTable = ({ setFeedback }) => {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const fetchProducts = async () => {
     try {
@@ -22,7 +25,7 @@ const ProductTable = ({ setFeedback }) => {
   const handleDeleteProduct = async (id) => {
     try {
       await axios.delete(
-        ` http://localhost:3000/api/product/deleteProduct/${id}`
+        ` http://localhost:3000/api/product/deleteProduct/${selectedProductId}`
       );
       setFeedback({
         type: "success",
@@ -34,6 +37,8 @@ const ProductTable = ({ setFeedback }) => {
         type: "error",
         message: error.response?.data?.message || "Failed to delete product",
       });
+    } finally {
+      setDialogOpen(false);
     }
   };
 
@@ -43,7 +48,7 @@ const ProductTable = ({ setFeedback }) => {
 
   const handleUpdateProduct = async () => {
     try {
-      const updates = new formData();
+      const updates = new FormData();
       updates.append("name", editingProduct.name);
       updates.append("description", editingProduct.description);
       updates.append("category", editingProduct.category);
@@ -51,7 +56,7 @@ const ProductTable = ({ setFeedback }) => {
         updates.append("image", editingProduct.image);
       }
       const response = await axios.put(
-        `http://localhost:3000/api/product/updateProduct/${editingProduct._Id}`,
+        `http://localhost:3000/api/product/updateProduct/${editingProduct._id}`,
         updates,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -168,7 +173,10 @@ const ProductTable = ({ setFeedback }) => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDeleteProduct(product._id)}
+                    onClick={() => {
+                      setSelectedProductId(product._id);
+                      setDialogOpen(true);
+                    }}
                     className="bg-red-500 text-white py-1 px-3 rounded-md shadow-lg hover:bg-red-700 transition duration-300"
                   >
                     Delete
@@ -179,6 +187,12 @@ const ProductTable = ({ setFeedback }) => {
           ))}
         </tbody>
       </table>
+      <ConfirmationDialog
+        isOpen={dialogOpen}
+        message="Are you sure you want to delete this product?"
+        onConfirm={handleDeleteProduct}
+        onCancel={() => setDialogOpen(false)}
+      />
     </div>
   );
 };
