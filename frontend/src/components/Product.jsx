@@ -14,7 +14,8 @@ const Product = () => {
       const { data } = await axios.get(
         "http://localhost:3000/api/product/getAllProducts"
       );
-      setProducts(data.products);
+      const shuffledProducts = data.products.sort(() => Math.random() - 0.5);
+      setProducts(shuffledProducts);
       setLoading(false);
     } catch (error) {
       console.error(
@@ -27,10 +28,6 @@ const Product = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const filterData = products.filter(
-    (product) => product.category === "Health"
-  );
 
   var settings = {
     dots: true,
@@ -90,16 +87,16 @@ const Product = () => {
         <div className="mt-2">
           {loading ? (
             <p>loading...</p>
-          ) : filterData.length > 0 ? (
+          ) : products.length > 0 ? (
             <Slider {...settings}>
-              {filterData.map((item) => (
+              {products.map((item) => (
                 <Cards item={item} key={item._id} />
               ))}
             </Slider>
           ) : (
-            <p>No products found in this category.</p>
+            <p>No products found!</p>
           )}
-        </div>{" "}
+        </div>
       </div>
     </>
   );

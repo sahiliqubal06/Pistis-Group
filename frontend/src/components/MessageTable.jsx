@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ConfirmationDialog from "./ConfirmationDialog";
 
-const MessageTable = ({ setFeedback }) => {
+const MessageTable = ({ feedback, setFeedback }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -64,6 +64,15 @@ const MessageTable = ({ setFeedback }) => {
         <h2 className="text-3xl font-bold mb-4 text-center text-blue-600">
           Messages
         </h2>
+        {feedback && (
+          <div
+            className={`p-4 mb-4 rounded ${
+              feedback.type === "success" ? "bg-green-500" : "bg-red-500"
+            } text-white`}
+          >
+            {feedback.message}
+          </div>
+        )}
         {loading ? (
           <p>Loading messages...</p>
         ) : messages.length > 0 ? (

@@ -7,7 +7,9 @@ import ProductTable from "../components/ProductTable";
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [feedback, setFeedback] = useState(null);
+  const [messageTableFeedback, setMessageTableFeedback] = useState(null);
+  const [AddProductFeedback, setAddProductFeedback] = useState(null);
+  const [productTableFeedback, setProductTableFeedback] = useState(null);
 
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
@@ -39,19 +41,19 @@ const Dashboard = () => {
           Logout
         </button>
       </header>
-      <div className="p-6">
-        {feedback && (
-          <div
-            className={`p-4 mb-4 text-white rounded ${
-              feedback.type === "success" ? "bg-green-500" : "bg-red-500"
-            }`}
-          >
-            {feedback.message}
-          </div>
-        )}
-        <MessageTable setFeedback={setFeedback} />
-        <AddProduct setFeedback={setFeedback} />
-        <ProductTable setFeedback={setFeedback} />
+      <div className="p-6 space-y-6">
+        <MessageTable
+          feedback={messageTableFeedback}
+          setFeedback={setMessageTableFeedback}
+        />
+        <AddProduct
+          feedback={AddProductFeedback}
+          setFeedback={setAddProductFeedback}
+        />
+        <ProductTable
+          feedback={productTableFeedback}
+          setFeedback={setProductTableFeedback}
+        />
       </div>
     </div>
   );
