@@ -58,18 +58,6 @@ export const addProduct = catchAsyncErrors(async (req, res) => {
   });
 });
 
-export const getProduct = catchAsyncErrors(async (req, res) => {
-  const { id } = req.params;
-  const product = await Product.findById(id);
-  if (!product) {
-    throw new ErrorHandler("Product not found", 404);
-  }
-  res.status(201).json({
-    success: true,
-    product,
-  });
-});
-
 export const updateProduct = catchAsyncErrors(async (req, res) => {
   const { id } = req.params;
   const updates = req.body;

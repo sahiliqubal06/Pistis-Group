@@ -12,7 +12,7 @@ const Product = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/product/products"
+        "http://localhost:3000/api/product/getAllProducts"
       );
       setProducts(data.products);
       setLoading(false);

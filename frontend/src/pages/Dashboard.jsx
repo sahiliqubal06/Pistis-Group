@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MessageTable from "../components/MessageTable";
-import ProductManager from "../components/ProductManager";
+// import ProductManager from "../components/ProductManager";
+import AddProduct from "../components/AddProduct";
+import ProductTable from "../components/ProductTable";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -49,7 +51,9 @@ const Dashboard = () => {
           </div>
         )}
         <MessageTable setFeedback={setFeedback} />
-        <ProductManager setFeedback={setFeedback} />
+        <AddProduct setFeedback={setFeedback} />
+        <ProductTable setFeedback={setFeedback} />
+        {/* <ProductManager setFeedback={setFeedback} /> */}
       </div>
     </div>
   );
