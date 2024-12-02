@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const {
@@ -8,31 +9,51 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    if (data.email === "admin@pistis.com" && data.password === "pistis123") {
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/dashboard");
-    } else {
-      alert("Invalid login Credentials");
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      if (response.data.success) {
+        localStorage.setItem("isAuthenticated", true);
+        setSuccessMessage("Login successfull.");
+        setTimeout(() => navigate("/dashboard"), 2000);
+      } else {
+        setErrorMessage(response.data.message || "Login failed!");
+      }
+    } catch (error) {
+      console.error(error);
+      if (error.response) {
+        setErrorMessage(error.response.data.message || "Something went wrong!");
+      } else {
+        setErrorMessage("Network or server error occurred!");
+      }
     }
   };
 
   return (
     <div className="text-center justify-center">
       <dialog id="my_modal_3" className="modal ">
-        <div className="modal-box bg-slate-900">
-          <form onSubmit={handleSubmit(onSubmit)} method="dialog">
+        <div className="modal-box bg-cyan-950">
+          <form onSubmit={handleSubmit(onSubmit)} method="dialog" className="space-y-4">
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               onClick={() => document.getElementById("my_modal_3").close()}
             >
               ✕
             </button>
-            <h3 className="font-bold text-lg ">Login</h3>
-            <h1 className="">Only Admins Are Allowed To Access.</h1>
+            <h1 className="text-red-600">Only Admins Are Allowed To Access.</h1>
             <div className="mt-4 space-y-2">
               <span>Email</span>
               <br />
@@ -70,6 +91,12 @@ const Login = () => {
                 Login
               </button>
             </div>
+            {successMessage && (
+              <p className="text-green-500 mt-4">{successMessage}</p>
+            )}
+            {errorMessage && (
+              <p className="text-red-500 mt-4">{errorMessage}</p>
+            )}
           </form>
         </div>
       </dialog>

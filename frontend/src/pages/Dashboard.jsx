@@ -3,18 +3,13 @@ import { useNavigate } from "react-router-dom";
 import MessageTable from "../components/MessageTable";
 import AddProduct from "../components/AddProduct";
 import ProductTable from "../components/ProductTable";
+import Logout from "../components/Logout";
+import axios from "axios";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-
   const [messageTableFeedback, setMessageTableFeedback] = useState(null);
   const [AddProductFeedback, setAddProductFeedback] = useState(null);
   const [productTableFeedback, setProductTableFeedback] = useState(null);
-
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    navigate("/");
-  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -34,12 +29,7 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold flex-grow text-center">
           Admin Dashboard
         </h1>
-        <button
-          className="bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-gray-200"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
+        <Logout />
       </header>
       <div className="p-6 space-y-6">
         <MessageTable
