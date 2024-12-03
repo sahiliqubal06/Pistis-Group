@@ -111,7 +111,7 @@ const Footer = () => {
           {/* Copyright Information */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-0 space-y-2 sm:space-y-0 sm:space-x-4">
             <p className="text-center">
-              &copy; {new Date().getFullYear()} Pistis Group. All Rights
+              &copy; {new Date().getFullYear()} Pistis Groups Pvt. Ltd. All Rights
               Reserved.
             </p>
             <span className="hidden sm:inline-block">|</span>

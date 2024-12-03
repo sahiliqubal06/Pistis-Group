@@ -38,6 +38,12 @@ const AddProduct = ({ feedback, setFeedback }) => {
         type: "success",
         message: response.data.message,
       });
+      setFormData({
+        name: "",
+        description: "",
+        category: "",
+        image: null,
+      });
     } catch (error) {
       setFeedback({
         type: "error",
