@@ -13,7 +13,7 @@ const Cards = ({ item }) => {
             />
           </figure>
           <div className="card-body bg-gray-200 ">
-            <h2 className="card-title justify-center text-center text-blue-500">
+            <h2 className="card-title justify-center text-center text-teal-500">
               {item.name}
             </h2>
             <p>{item.description}</p>

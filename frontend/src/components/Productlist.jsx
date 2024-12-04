@@ -44,12 +44,12 @@ const Productlist = () => {
             and patient care.
           </p>
         </div>
-        <div className="mt-5">
-          <h1 className="text-4xl md:text-4xl font-bold text-center">
+        <div className="mt-4">
+          <h1 className="text-4xl md:text-4xl font-bold text-center text-blue-700">
             Product List
           </h1>
         </div>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-4">
           {loading ? (
             <p>Loading products...</p>
           ) : products.length > 0 ? (

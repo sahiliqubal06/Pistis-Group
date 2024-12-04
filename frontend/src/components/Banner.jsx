@@ -36,36 +36,36 @@ const Banner = () => {
             </p>
           </div>
         </div>
-        <div className="w-full md:w-1/2 mt-10 order-1 grid grid-cols-2 gap-0 md:grid-cols-2 lg:grid-cols-3 overflow-hidden">
+        <div className="w-full md:w-1/2 mt-10 order-1 grid grid-cols-2 gap-0 md:grid-cols-2 lg:grid-cols-3 overflow-hidden group transition-all duration-300 group-hover:gap-4 rounded-badge">
           <img
             src="/images/banner1.jpg"
             alt="Image 1"
-            className="w-full h-full object-cover border-none"
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105 "
           />
           <img
             src="/images/banner2.jpg"
             alt="Image 2"
-            className="w-full h-full object-cover border-none"
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105"
           />
           <img
             src="/images/banner3.jpg"
             alt="Image 3"
-            className="w-full h-full object-cover border-none"
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105"
           />
           <img
             src="/images/banner4.jpg"
             alt="Image 4"
-            className="w-full h-full object-cover border-none"
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105"
           />
           <img
             src="/images/banner5.jpg"
             alt="Image 5"
-            className="w-full h-full object-cover border-none "
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105"
           />
           <img
             src="/images/banner6.jpg"
             alt="Image 6"
-            className="w-full h-full object-cover border-none"
+            className="w-full h-full object-cover border-none transform transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </div>

@@ -101,7 +101,7 @@ const MessageForm = () => {
   return (
     <>
       <div className=" mt-28 ">
-        <h1 className="text-2xl md:text-4xl font-bold justify-center text-center">
+        <h1 className="text-2xl md:text-4xl font-bold justify-center text-center text-blue-700">
           Reach Out to Us
         </h1>
         <p className=" text-center mx-auto max-w-2xl leading-relaxed mt-3 text-xl">

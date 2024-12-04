@@ -187,7 +187,7 @@ const ProductTable = ({ feedback, setFeedback }) => {
                     <td className="py-2 px-4 border">{product.description}</td>
                     <td className="py-2 px-4 border">{product.category}</td>
                     <td className="py-2 px-4 border">
-                      <div className="flex space-x-2">
+                      <div className="flex space-x-2 justify-evenly">
                         <button
                           onClick={() => handleEditProduct(product)}
                           className="bg-blue-500 text-white py-1 px-3 rounded-md shadow-lg hover:bg-blue-700 transition duration-300"

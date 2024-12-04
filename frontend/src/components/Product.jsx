@@ -68,10 +68,10 @@ const Product = () => {
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-10 px-4">
         <div>
-          <h1 className="font-bold text-4xl pb-2 justify-center text-center">
+          <h1 className="font-bold text-4xl pb-2 justify-center text-center text-blue-700">
             Our Products
           </h1>
-          <p className="text-xl text-justify">
+          <p className="text-xl mt-4 text-justify">
             At Pistis Group, we take pride in offering a comprehensive range of
             surgical products tailored to meet the diverse needs of healthcare
             professionals. Our catalog includes precision-engineered surgical
@@ -84,7 +84,7 @@ const Product = () => {
             every aspect of patient care.
           </p>
         </div>
-        <div className="mt-2">
+        <div className="mt-4">
           {loading ? (
             <p>loading...</p>
           ) : products.length > 0 ? (
