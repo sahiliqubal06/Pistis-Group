@@ -11,7 +11,7 @@ const MessageTable = ({ feedback, setFeedback }) => {
   const fetchMessages = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/message/getall"
+        "https://pistis-group.onrender.com/api/message/getall"
       );
       setMessages(data.messages);
       setLoading(false);
@@ -37,7 +37,7 @@ const MessageTable = ({ feedback, setFeedback }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/message/delete/${selectedMessageId}`
+        `https://pistis-group.onrender.com/api/message/delete/${selectedMessageId}`
       );
       setFeedback({
         type: "success",

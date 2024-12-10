@@ -16,7 +16,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://pistis-group.onrender.com/api/auth/login",
         data,
         {
           headers: {

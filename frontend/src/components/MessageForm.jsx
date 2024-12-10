@@ -48,7 +48,7 @@ const MessageForm = () => {
     if (!validateForm()) return;
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/message/send",
+        "https://pistis-group.onrender.com/api/message/send",
         formData
       );
       setSuccessMessage(data.message);

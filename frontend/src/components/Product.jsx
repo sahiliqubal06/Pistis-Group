@@ -12,7 +12,7 @@ const Product = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/product/getAllProducts"
+        "https://pistis-group.onrender.com/api/product/getAllProducts"
       );
       const shuffledProducts = data.products.sort(() => Math.random() - 0.5);
       setProducts(shuffledProducts);

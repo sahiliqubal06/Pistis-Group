@@ -10,7 +10,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "https://pistis-group.onrender.com/api/auth/logout",
         {},
         {
           withCredentials: true,

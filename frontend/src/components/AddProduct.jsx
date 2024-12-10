@@ -28,7 +28,7 @@ const AddProduct = ({ feedback, setFeedback }) => {
       data.append("image", formData.image);
 
       const response = await axios.post(
-        "http://localhost:3000/api/product/addProduct",
+        "https://pistis-group.onrender.com/api/product/addProduct",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -12,7 +12,7 @@ const ProductTable = ({ feedback, setFeedback }) => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/product/getAllProducts"
+        "https://pistis-group.onrender.com/api/product/getAllProducts"
       );
       setProducts(response.data.products);
     } catch (error) {
@@ -28,7 +28,7 @@ const ProductTable = ({ feedback, setFeedback }) => {
   const handleDeleteProduct = async (id) => {
     try {
       await axios.delete(
-        ` http://localhost:3000/api/product/deleteProduct/${selectedProductId}`
+        ` https://pistis-group.onrender.com/api/product/deleteProduct/${selectedProductId}`
       );
       setFeedback({
         type: "success",
@@ -59,7 +59,7 @@ const ProductTable = ({ feedback, setFeedback }) => {
         updates.append("image", editingProduct.image);
       }
       const response = await axios.put(
-        `http://localhost:3000/api/product/updateProduct/${editingProduct._id}`,
+        `https://pistis-group.onrender.com/api/product/updateProduct/${editingProduct._id}`,
         updates,
         {
           headers: { "Content-Type": "multipart/form-data" },
