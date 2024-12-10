@@ -9,6 +9,7 @@ import authRouter from "./routes/authRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import cloudinary from "cloudinary";
 import fileUpload from "express-fileupload";
+import path from "path";
 
 dotenv.config({ path: "./config.env" });
 const app = express();
@@ -48,3 +49,20 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
 });
+
+
+/*---------------------DEPLOYMENT-----------------------*/
+
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "../frontend", "dist", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Running on development");
+  });
+}
+
+/*---------------------DEPLOYMENT-----------------------*/
